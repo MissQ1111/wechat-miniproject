@@ -1,38 +1,57 @@
-//Page Object
+//引用用来发送请求的方法
+import { request } from "../../request/index.js";
+
 Page({
     data: {
-
+        //轮播图数组
+        swiperList: [],
+        //导航数组
+        catesList: [],
+        //楼层数据
+        floorList: []
     },
-    //options(Object)
+    //页面开始加载就会触发
     onLoad: function(options) {
+        // //1 发送异步请求获取轮播图数据
+        // wx.request({
+        //     url: 'https://api.zbztb.cn/api/public/v1/home/swiperdata', //开发者服务器接口地址",
+        //     success: res => {
+        //         this.setData({
+        //             swiperList: res.data.message
+        //         })
 
+        //     },
+        // });
+        this.getSwiperList();
+        this.getCateList();
+        this.getFloorList();
     },
-    onReady: function() {
 
+    //获取轮播图数据
+    getSwiperList() {
+        request({ url: "https://api.zbztb.cn/api/public/v1/home/swiperdata" })
+            .then(result => {
+                this.setData({
+                    swiperList: result.data.message
+                })
+            })
     },
-    onShow: function() {
-
+    //获取分类导航数据
+    getCateList() {
+        request({ url: "https://api.zbztb.cn/api/public/v1/home/catitems" })
+            .then(result => {
+                this.setData({
+                    catesList: result.data.message
+                })
+            })
     },
-    onHide: function() {
-
+    //获取楼层数据
+    getFloorList() {
+        request({ url: "https://api.zbztb.cn/api/public/v1/home/floordata" })
+            .then(result => {
+                this.setData({
+                    floorList: result.data.message
+                })
+            })
     },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-    onShareAppMessage: function() {
-
-    },
-    onPageScroll: function() {
-
-    },
-    //item(index,pagePath,text)
-    onTabItemTap: function(item) {
-
-    }
 });
