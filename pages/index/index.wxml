@@ -10,7 +10,7 @@
             wx:for="{{swiperList}}"
             wx:key="goods_id"
             >
-                <navigator class="" target="" url="" hover-class="navigator-hover" open-type="navigate">
+                <navigator class="" target="" url="{{item.navigator_url}}" hover-class="navigator-hover" open-type="navigate">
                     <image mode="widthFix" src="{{item.image_src}}"></image>
                 </navigator>
             </swiper-item>
@@ -20,9 +20,10 @@
 
     <!-- 导航栏开始 -->
     <view class="index_cate">
-        <navigator class="" target="" url="" hover-class="navigator-hover" open-type="navigate"
+        <navigator class="" target="" url="" hover-class="navigator-hover" open-type="switchTab"
         wx:for="{{catesList}}"
         wx:key="name"
+        url="/pages/category/index"
         >
         <image class="" src="{{item.image_src}}" mode="widthFix"></image>
         </navigator>
@@ -48,6 +49,7 @@
                     wx:for-item="item2"
                     wx:for-index="index2"
                     wx:key="name"
+                    url="{{item2.navigator_url}}"
                 >
                 <image class="" src="{{item2.image_src}}" mode="{{index2===0?'widthFix':'scaleFill'}}" lazy-load="false" binderror="" bindload=""></image>
                 </navigator>
